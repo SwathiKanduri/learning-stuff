@@ -35,3 +35,17 @@
   background-color: antiquewhite ;
 display: inline;
 }
+
+.user-header, .user-row {
+  padding: 10px;
+}
+
+.user-header {
+  background: green;
+  color: white;
+}
+
+.user-row:nth-of-type(odd) {
+  background: gray;
+  
+}

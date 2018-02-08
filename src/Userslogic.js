@@ -1,7 +1,10 @@
 import React from 'react'
 import Users from './Users';
+import axios from 'axios'
+import UserHeader from './Components/UserHeader'
+import UserRow from './Components/UserRow'
 
-const jsonfile='http://localhost/C:/Users/lappy/Desktop/testapp/testing-two/src/userdata.json';
+const jsonfile=' http://localhost:3000/userdata.json';
 
 export default class UsersLogic extends React.Component{
     constructor(){
@@ -11,15 +14,10 @@ export default class UsersLogic extends React.Component{
         }
     }
    
-componentWillMount() {
-    fetch(jsonfile)
-    .then((res)=>{res.json()
-    }).then((data)=> {
-        this.setState({
-            users:data
-        });
-    }).catch((err)=>{
-        console.log(err)
+componentDidMount() {
+    axios.get(jsonfile)
+    .then((res) => {
+        this.setState({ users: res.data.users })
     })
 }  
 
@@ -50,16 +48,16 @@ removeUser=(i)=>{
 
     render(){
         return(
-            <div>
-            <div><button onClick={this.addNew.bind(this,'Default user name')} > Add new User</button> </div>
-            <div> 
-                {this.state.users.map((userslist,i)=> {
-                    return <Users key={i} index={i} removeuser={this.removeUser} saveuser={this.saveUser}>
-                    {userslist}
-                    </Users >
-                } )
-                }
-            </div> 
+            <div className="container">
+            <UserHeader />
+            {!this.state.users && 
+                <p>Loading ...</p>
+            }
+
+            {this.state.users && this.state.users.map((user,i) => {
+                return <UserRow key={i} user={user} />
+            })}
+            
             </div>   
         );
 

@@ -15,3 +15,4 @@ const UserRow = ({ user }) => (
 )
 
 export default UserRow
+

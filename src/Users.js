@@ -35,7 +35,7 @@ remove=()=>{
 this.props.removeuser(this.props.index);
 }
 
-renderNormal=()=>{
+renderThis=()=>{
     return (
       <div className="userContainer"> 
             <div className="userNameContainer" > {this.props.children} </div> <br/>
@@ -55,7 +55,7 @@ renderForm=()=>{
 }
 
     render(){
-        return this.state.editing?this.renderForm():this.renderNormal();
+        return this.state.editing?this.renderForm():this.renderThis();
 
     }
 }

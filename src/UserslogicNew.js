@@ -5,6 +5,7 @@ import UserHeader from './Components/UserHeader'
 import UserRow from './Components/UserRow'
 
 const jsonfile=' http://localhost:3000/userdata.json';
+var index=0;
 
 export default class UsersLogic extends React.Component{
     constructor(){
@@ -39,11 +40,10 @@ addNew(newuser,newclass,newschool){
 
 saveUser=(newuser,newclass,newschool,i) => {
 
-    var indx=i-1;
     var arr=this.state.users;
-    arr[indx]["full_name"]=newuser,
-    arr[indx]["class"]=newclass,
-    arr[indx]["school"]=newschool,
+    arr[i]["full_name"]=newuser,
+    arr[i]["class"]=newclass,
+    arr[i]["school"]=newschool,
     this.setState({
         users:arr,
     })                                  
@@ -58,6 +58,7 @@ removeUser=(i)=>{
 }
 
 edit=(i)=>{
+    index=i;
     this.setState({
     editing:true
     });
@@ -105,11 +106,10 @@ renderThis=()=>{
 renderForm=()=>{
     return (
         <div className="userContainer"> 
-        {/* <textarea ref="newText" defaultValue={this.props.children} /> <br/>  */}
-        <input ref="name" type="text" placeholder="enter full_name here"/>
-        <input ref="class" type="text" placeholder="enter class here"/>
-        <input ref="school" type="text" placeholder="enter school here"/> 
-        <button onClick={this.save.bind(this,this.state.users.length)} >save</button>
+        <input ref="name" type="text" placeholder="enter new full_name here"/>
+        <input ref="class" type="text" placeholder="enter new class here"/>
+        <input ref="school" type="text" placeholder="enter new school here"/> 
+        <button onClick={this.save.bind(this,index)} >save</button>
         </div>
     );
 }
@@ -117,7 +117,7 @@ renderForm=()=>{
 
 
     render(){
-        
+
                  return this.state.editing?this.renderForm():this.renderThis();
             }
 }

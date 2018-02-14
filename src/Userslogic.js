@@ -10,7 +10,8 @@ export default class UsersLogic extends React.Component{
     constructor(){
         super();
         this.state={
-            users:[]
+            users:[],
+            length:0
         }
     }
    
@@ -21,18 +22,26 @@ componentDidMount() {
     })
 }  
 
-addNew(newuser){
+addNew(newuser,newclass,newschool){
     var arr=this.state.users;
-    arr.push(newuser);
+    arr.push({
+        full_name:newuser,
+        class:newclass,
+        school:newschool
+    });
     this.setState({
-        users:arr
+        users:arr,
+        length:arr.length
     });
 
 }
 
-saveUser=(newtext,i)=> {
-var arr=this.state.users;
-arr[i]=newtext;
+saveUser=(newuser,newclass,newschool,i)=> {
+    var ind=i-1;
+    var arr=this.state.users;
+arr[ind]["full_name"]=newuser,
+arr[ind]["class"]=newclass,
+arr[ind]["school"]=newschool,
 this.setState({
     users:arr
 })
@@ -40,26 +49,35 @@ this.setState({
 
 removeUser=(i)=>{
     var arr=this.state.users;
-    arr.splice(i,1)  
+    arr.splice(i,1); 
   this.setState({
       users:arr
   });
 }
 
+
+
     render(){
         return(
             <div className="container">
-            <UserHeader />
-            {!this.state.users && 
-                <p>Loading ...</p>
-            }
+                <UserHeader />
+                {!this.state.users && 
+                    <p>Loading ...</p>
+                }
 
-            {this.state.users && this.state.users.map((user,i) => {
-                return <UserRow key={i} user={user} />
-            })}
-            
+                {this.state.users && this.state.users.map((user,i) => {
+                    return <UserRow key={i} user={user} index={i} />
+                })}  
+                
+                <button onClick={this.addNew.bind(this, "default name","default class","default school")} >
+                add new user </button>  
+
+                    <Users saveuser={this.saveUser} removeuser={this.removeUser} user={this.state.users} 
+                    length={this.state.users.length}      /> 
+
             </div>   
         );
 
     }
 }
+

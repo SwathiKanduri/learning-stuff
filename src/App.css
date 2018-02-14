@@ -45,7 +45,10 @@ display: inline;
   color: white;
 }
 
-.user-row:nth-of-type(odd) {
+.user-row:nth-of-type(even) {
   background: gray;
-  
+}
+
+.user-form input, .user-form button{
+  margin: 5px 0;
 }

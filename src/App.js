@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import UsersLogic from './Userslogic'
+import UsersLogic from './UserslogicNew'
+
+
 
 class App extends Component {
   render() {
@@ -11,7 +13,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header> <br/>
-        <UsersLogic/>
+        <UsersLogic />
+        
       </div>
     );
   }

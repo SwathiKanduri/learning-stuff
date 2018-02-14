@@ -18,12 +18,14 @@ edit=()=>{
 }
 
 save=()=>{
-    var text=this.refs.newText.value;
-    if(text.length<1){
-        alert('cant add empty name')
+    var newuser=this.refs.name.value;
+    var newclass=this.refs.class.value;
+    var newschool=this.refs.school.value;
+    if(newuser.length<1 ||newclass.length<1 || newschool.length<1 ){
+        alert('cant add empty name/class/school')
     }
-    else{
-        this.props.saveuser(text,this.props.index);
+    else{  
+        this.props.saveuser(newuser,newclass,newschool,this.props.length);
         this.setState({
             editing:false
         });
@@ -33,12 +35,13 @@ save=()=>{
 
 remove=()=>{
 this.props.removeuser(this.props.index);
+console.log(this.props.index);
 }
 
 renderThis=()=>{
     return (
       <div className="userContainer"> 
-            <div className="userNameContainer" > {this.props.children} </div> <br/>
+          {/*  <div className="userNameContainer" > {this.props.children} </div> <br/> */}
             <button onClick={this.edit} > edit</button>
             <button onClick={this.remove}> remove</button>
       </div>
@@ -48,8 +51,11 @@ renderThis=()=>{
 renderForm=()=>{
     return (
         <div className="userContainer"> 
-         <textarea ref="newText" defaultValue={this.props.children} /> <br/>
-         <button onClick={this.save} > save</button>
+        {/* <textarea ref="newText" defaultValue={this.props.children} /> <br/>  */}
+        <input ref="name" type="text" placeholder="enter full_name here"/>
+        <input ref="class" type="text" placeholder="enter class here"/>
+        <input ref="school" type="text" placeholder="enter school here"/>
+         <button onClick={this.save}> save</button>
         </div>
     );
 }

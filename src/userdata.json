@@ -1,8 +1,11 @@
 {
     "users":[
-        "dumbo",
-        "limbid",
-        "baycon",
-        "orlandy"
+        {"full_name": "John Kelvin", "class": "IV", "school": "XYZ school"},
+        {"full_name": "Kristin", "class": "V", "school": "DAM school"},
+        {"full_name": "Jerry", "class": "VI", "school": "FGH school"},
+        {"full_name": "Palak", "class": "VII", "school": "YZ school"},
+        {"full_name": "Sriram", "class": "VIII", "school": "CDE school"},
+        {"full_name": "Ramesh", "class": "IX", "school": "FGHI school"},
+        {"full_name": "Roy", "class": "X", "school": "JKL school"}
         ]
 }
